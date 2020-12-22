@@ -33,13 +33,13 @@ export default modelExtend(model, {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
-        if (
-          pathToRegexp('/dashboard').exec(pathname) ||
-          pathToRegexp('/').exec(pathname)
-        ) {
-          dispatch({ type: 'query' })
-          dispatch({ type: 'queryWeather' })
-        }
+        // if (
+        //   pathToRegexp('/dashboard').exec(pathname) ||
+        //   pathToRegexp('/').exec(pathname)
+        // ) {
+        //   dispatch({ type: 'query' })
+        //   dispatch({ type: 'queryWeather' })
+        // }
       })
     },
   },

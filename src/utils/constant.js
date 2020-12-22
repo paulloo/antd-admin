@@ -1,6 +1,7 @@
 export const ROLE_TYPE = {
   ADMIN: 'admin',
-  DEFAULT: 'admin',
+  DEFAULT: 'user',
+  USER: 'user',
   DEVELOPER: 'developer',
 }
 

@@ -33,33 +33,34 @@ const bodyStyle = {
 class Dashboard extends PureComponent {
   render() {
     const userDetail = store.get('user')
-    const { avatar, username } = userDetail
-    const { dashboard, loading } = this.props
-    const {
-      weather,
-      sales,
-      quote,
-      numbers,
-      recentSales,
-      comments,
-      completed,
-      browser,
-      cpu,
-      user,
-    } = dashboard
+    // const { avatar, username } = userDetail
+    // const { dashboard, loading } = this.props
+    // const {
+    //   weather,
+    //   sales,
+    //   quote,
+    //   numbers,
+    //   recentSales,
+    //   comments,
+    //   completed,
+    //   browser,
+    //   cpu,
+    //   user,
+    // } = dashboard
 
-    const numberCards = numbers.map((item, key) => (
-      <Col key={key} lg={6} md={12}>
-        <NumberCard {...item} />
-      </Col>
-    ))
+    // const numberCards = numbers.map((item, key) => (
+    //   <Col key={key} lg={6} md={12}>
+    //     <NumberCard {...item} />
+    //   </Col>
+    // ))
 
     return (
       <Page
         // loading={loading.models.dashboard && sales.length === 0}
         className={styles.dashboard}
       >
-        <Row gutter={24}>
+        dashboard
+        {/* <Row gutter={24}>
           {numberCards}
           <Col lg={18} md={24}>
             <Card
@@ -148,7 +149,7 @@ class Dashboard extends PureComponent {
               <User {...user} avatar={avatar} username={username} />
             </Card>
           </Col>
-        </Row>
+        </Row> */}
       </Page>
     )
   }
