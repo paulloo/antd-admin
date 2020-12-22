@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { cloneDeep, isEmpty } from 'lodash'
-const { parse, compile } = require("path-to-regexp")
 import { message } from 'antd'
 import { CANCEL_REQUEST_MESSAGE } from 'utils/constant'
+const { parse, compile } = require("path-to-regexp")
 
 const { CancelToken } = axios
 window.cancelRequest = new Map()
@@ -10,9 +10,8 @@ window.cancelRequest = new Map()
 export default function request(options) {
   let { data, url, method = 'get' } = options
   const cloneData = cloneDeep(data)
-
   try {
-    let domain = ''
+    let domain = `http://127.0.0.1:4002`
     const urlMatch = url.match(/[a-zA-z]+:\/\/[^/]*/)
     if (urlMatch) {
       ;[domain] = urlMatch
@@ -33,7 +32,8 @@ export default function request(options) {
   }
 
   options.url = url
-  options.params = cloneData
+  options.method = method
+  options.data = cloneData
   options.cancelToken = new CancelToken(cancel => {
     window.cancelRequest.set(Symbol(Date.now()), {
       pathname: window.location.pathname,
@@ -41,10 +41,15 @@ export default function request(options) {
     })
   })
 
+  const token = localStorage.getItem('token')
+  if(token) {
+    // options.headers.Authorization = `Bearer ${token}`
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  }
+
   return axios(options)
     .then(response => {
       const { statusText, status, data } = response
-
       let result = {}
       if (typeof data === 'object') {
         result = data

@@ -1,6 +1,6 @@
 import { history } from 'umi'
-const { pathToRegexp } = require("path-to-regexp")
 import api from 'api'
+const { pathToRegexp } = require("path-to-regexp")
 
 const { loginUser } = api
 
@@ -21,6 +21,9 @@ export default {
       const data = yield call(loginUser, payload)
       const { locationQuery } = yield select(_ => _.app)
       if (data.success) {
+
+        localStorage.setItem('token', data.token)
+
         const { from } = locationQuery
         yield put({ type: 'app/query' })
         if (!pathToRegexp('/login').exec(from)) {

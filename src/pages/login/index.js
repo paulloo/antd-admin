@@ -18,10 +18,10 @@ class Login extends PureComponent {
 
   render() {
     const { dispatch, loading, i18n } = this.props
-    
     const handleOk = values => {
       dispatch({ type: 'login/login', payload: values })
     }
+   
     let footerLinks = [
       {
         key: 'github',
@@ -52,10 +52,16 @@ class Login extends PureComponent {
           <Form
             onFinish={handleOk}
             >
-            <FormItem name="username" 
+            {/* <FormItem name="username" 
               rules={[{ required: true }]} hasFeedback>
                 <Input
                   placeholder={i18n.t`Username`}
+                />
+            </FormItem> */}
+            <FormItem name="email" 
+              rules={[{ required: true }]} hasFeedback>
+                <Input
+                  placeholder={i18n.t`Email`}
                 />
             </FormItem>
             <FormItem name="password"
